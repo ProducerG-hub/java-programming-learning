@@ -1,3 +1,4 @@
+package triangle;
 public class Triangle {
     double height;
     double base;
@@ -9,8 +10,9 @@ public class Triangle {
     }
 
     public double calculateArea(double height, double base){
-        double area = (height * base)/2;
-        return area;
+        double Area;
+                Area = (height * base)/2;
+        return Area;
     }
 
     public static void showArea(double Area){
