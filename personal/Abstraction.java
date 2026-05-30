@@ -100,9 +100,9 @@ class BankTransfer extends Payment{
 
 public class Abstraction {
     public static void main(String[] args) {
-        MobilePayment p1 = new MobilePayment();
-        CardPayment p2 = new CardPayment();
-        BankTransfer p3 = new BankTransfer();
+        Payment p1 = new MobilePayment();
+        Payment p2 = new CardPayment();
+        Payment p3 = new BankTransfer();
         p1.processPayment();
         p2.processPayment();
         p3.processPayment();
