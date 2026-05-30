@@ -15,10 +15,20 @@ abstract class Payment{
     public abstract void displayReceipt();
 }
 
-class MobilePayment extends Payment{
+interface Footer{
+    void footer();
+}
+
+class MobilePayment extends Payment implements Footer{
     MobilePayment(){
         super(50000);
     }
+
+    @Override
+    public void footer(){
+        System.out.println("#mlue.technology.payments");
+    }
+
 
     @Override
     public void displayReceipt() {
@@ -29,6 +39,7 @@ class MobilePayment extends Payment{
         System.out.println("Payment: "+type);
         System.out.println("Amount: "+getAmount());
         System.out.println("Status: "+status);
+        footer();
         System.out.println("=================================================");
     }
 
