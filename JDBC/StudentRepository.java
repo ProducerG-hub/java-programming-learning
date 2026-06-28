@@ -2,6 +2,7 @@ package JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StudentRepository {
@@ -14,10 +15,39 @@ public class StudentRepository {
         ){
             statement.setString(1, student.getName());
             statement.setInt(2,student.getMarks());
-            statement.executeUpdate();
+            int rows = statement.executeUpdate();
 
-            System.out.println("Student saved successfully.............");
+            if (rows>0){
+                System.out.println("Student saved successfully............."+ "\n");
+            }
+            else {
+                System.out.println("Failed to save student, Please try again");
+            }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void getAllStudents(){
+
+        String sql = "SELECT * FROM students";
+        try(
+                Connection conn = ConnectionDB.connect();
+                PreparedStatement statement = conn.prepareStatement(sql);
+                ResultSet rs = statement.executeQuery()
+                ){
+            System.out.println("================== REGISTERED STUDENTS ====================");
+            while (rs.next()){
+              int ID =  rs.getInt("id");
+              String name = rs.getString("name");
+              int marks = rs.getInt("marks");
+                System.out.println("Student_ID: " + ID);
+                System.out.println("Student_Name: " + name);
+                System.out.println("Student_Marks: " + marks);
+                System.out.println("============================================================");
+            }
+
+        }catch (SQLException e){
             System.out.println(e.getMessage());
         }
     }

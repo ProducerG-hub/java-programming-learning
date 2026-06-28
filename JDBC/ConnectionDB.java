@@ -12,9 +12,6 @@ public class ConnectionDB {
 
         Connection connection = DriverManager.getConnection(db_url,username,password);
 
-        System.out.println("database connected");
-        System.out.println("=============================");
-
         return connection;
     }
 }

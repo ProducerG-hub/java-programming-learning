@@ -15,6 +15,7 @@ public class Main {
 
         Student student = new Student(name, marks);
         repository.saveStudent(student);
+        repository.getAllStudents();
 
 
     }
