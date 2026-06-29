@@ -52,4 +52,23 @@ public class StudentRepository {
         }
     }
 
+    public void updateStudent(int id, Student student1){
+        String sql = "UPDATE students SET name=?,marks=? WHERE id=?";
+        try( Connection conn = ConnectionDB.connect();
+        PreparedStatement statement = conn.prepareStatement(sql)){
+            statement.setString(1, student1.getName());
+            statement.setInt(2,student1.getMarks());
+            statement.setInt(3, id);
+
+            int rows = statement.executeUpdate();
+            if(rows>0){
+                System.out.println("student updated successfully........");
+            }else {
+                System.out.println("student not found");
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
