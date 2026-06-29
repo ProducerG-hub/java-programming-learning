@@ -89,4 +89,30 @@ public class StudentRepository {
         }
     }
 
+    public void searchStudentById(int id){
+        String sql = "SELECT * FROM students WHERE id=?";
+
+        try(Connection conn = ConnectionDB.connect();
+        PreparedStatement statement = conn.prepareStatement(sql))
+
+        {
+            statement.setInt(1,id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()){
+                int ID = rs.getInt("id");
+                String name = rs.getString("name");
+                int marks = rs.getInt("marks");
+
+                System.out.println("Student ID: " + ID);
+                System.out.println("Student Name: " + name);
+                System.out.println("Student Marks: " + marks);
+            }else {
+                System.out.println("student not found");
+            }
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
