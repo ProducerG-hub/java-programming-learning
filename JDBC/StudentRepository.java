@@ -71,4 +71,22 @@ public class StudentRepository {
         }
     }
 
+    public void deleteStudent(int id){
+        String sql = "DELETE FROM students WHERE id =?";
+        try( Connection conn = ConnectionDB.connect();
+        PreparedStatement statement = conn.prepareStatement(sql)){
+            statement.setInt(1,id);
+
+            int rows = statement.executeUpdate();
+
+            if(rows>0){
+                System.out.println("Student deleted successfully.......");
+            }else {
+                System.out.println("student not found");
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

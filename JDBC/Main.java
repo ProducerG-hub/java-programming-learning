@@ -11,6 +11,7 @@ public class Main {
         System.out.println("1.Register student");
         System.out.println("2.View registered students");
         System.out.println("3.Update student");
+        System.out.println("4.Delete Student");
         System.out.println("0.Exit");
         System.out.println("=====================");
         System.out.print("Choose Operation: ");
@@ -40,6 +41,12 @@ public class Main {
             Student student1 = new Student(name,marks);
             repository.updateStudent(id,student1);
 
+        } else if (choice == 4) {
+            System.out.print("Enter student ID: ");
+            int id = input.nextInt();
+            input.nextLine();
+
+            repository.deleteStudent(id);
         } else if (choice == 0) {
             System.out.println("Thank you, welcome back");
         }
